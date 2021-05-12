@@ -6,12 +6,13 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,8 +32,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Button pref = findViewById(R.id.pref_button);
-        pref.setOnClickListener(new View.OnClickListener()
-        {
+        pref.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent myIntent = new Intent(getApplicationContext(), SettingsActivity.class);
@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -61,10 +62,12 @@ public class MainActivity extends AppCompatActivity {
             startService(lu_pls_svc);
         }
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
     }
+
     private boolean isServiceRunning(Class serviceClass) {
         // getRunningServices deprecated. xref: https://developer.android.com/reference/android/app/ActivityManager#getRunningServices(int)
         ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);

@@ -1,0 +1,53 @@
+plugins {
+    id "com.android.application"
+}
+
+configurations {
+    compile.exclude module: "support-v4"
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "io.nekohasekai.lockup"
+        minSdkVersion 28
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    lintOptions {
+        disable "MissingTranslation"
+        disable "ExtraTranslation"
+        disable "BlockedPrivateApi"
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            outputFileName = outputFileName
+                    .replace("app", "lockup-" + variant.versionName)
+        }
+    }
+
+}
+
+dependencies {
+
+    implementation "androidx.appcompat:appcompat:1.2.0"
+    implementation "androidx.constraintlayout:constraintlayout:2.0.4"
+
+}
